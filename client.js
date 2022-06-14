@@ -2,7 +2,9 @@ const fs = require('fs');
 const { readFileStream } = require('./readFileStream.js');
 
 const main = (id, fromClient, fromServer) => {
-  readFileStream(id, fromServer);
+  readFileStream(fromServer, (message) => {
+    console.log(message);
+  });
 
   const writeStream = fs.createWriteStream(fromClient, {
     encoding: 'utf8',
