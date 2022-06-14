@@ -1,14 +1,14 @@
 const fs = require('fs');
 const { readFileStream } = require('./readFileStream.js');
 
-const main = () => {
-  readFileStream('./fromServer');
+const main = (id, fromClient, fromServer) => {
+  readFileStream(id, fromServer);
 
-  const writeStream = fs.createWriteStream('./fromClient', {
+  const writeStream = fs.createWriteStream(fromClient, {
     encoding: 'utf8',
     flags: 'a'
   });
   process.stdin.pipe(writeStream);
 }
 
-main();
+main(...process.argv.slice(2));

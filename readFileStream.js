@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const readFileStream = (fileName, start = 0) => {
+const readFileStream = (id, fileName, start = 0) => {
   let length = start;
 
   const readStream = fs.createReadStream(fileName, {
@@ -9,13 +9,13 @@ const readFileStream = (fileName, start = 0) => {
   });
 
   readStream.on('data', (chunk) => {
-    console.log(chunk);
+    console.log(`${id}: ${chunk}`);
     length += chunk.length;
   });
 
   readStream.on('end', () => {
     setTimeout(() => {
-      readFileStream(fileName, length);
+      readFileStream(id, fileName, length);
     }, 100);
   });
 };
