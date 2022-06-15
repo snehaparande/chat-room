@@ -22,7 +22,7 @@ const establishConnection = (id, fromClient, fromServer, connections) => {
 
 const main = () => {
   let connections = [];
-  readFileStream('./.chat/connections', (chunk) => {
+  readFileStream('./.chat/connections.txt', (chunk) => {
     const [id, fromClient, fromServer] = chunk.trim().split(',');
     console.log('Connection received:', id);
     const connection = establishConnection(id, fromClient, fromServer, connections);
